@@ -1,7 +1,24 @@
+'use client'
+
+import { useFormik } from 'formik';
 import Link from 'next/link';
 import React from 'react'
+import { signUpSchema } from '../components/schemas';
+
+const initialValues = {
+    name: '',
+    password: ''
+}
 
 const Login = () => {
+
+    const {values, handleBlur, handleChange, errors, handleSubmit, touched} = useFormik({
+        initialValues,
+        validationSchema: signUpSchema,
+        onSubmit: (values, action) => {
+            action.resetForm();
+        }
+    });
     return (
         <div className='min-h-screen flex justify-center items-center'>
             <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg border">
@@ -11,11 +28,46 @@ const Login = () => {
 
                     <form className='space-y-6'>
                         <div className="w-full">
-                            <input className="block w-full px-4 py-2 mt-2 text placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="email" placeholder="Email Address" aria-label="Email Address" />
+                            <label htmlFor="email">
+                                <p className='-mb-2 text-sm text-gray-800'>Email:</p>
+                                <input
+                                    id='email'
+                                    className="block w-full px-4 py-2 mt-2 text placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="email"
+                                    placeholder="Email Address"
+                                    aria-label="Email Address"
+                                    autoComplete='new-email'
+                                    name='email'
+                                    value={values.email}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {
+                                    errors.email && touched.email ?
+                                        <p className='text-xs text-red-500 font-medium'>{errors.email}</p>
+                                        : null
+                                }
+                            </label>
                         </div>
 
                         <div className="w-full">
-                            <input className="block w-full px-4 py-2 mt-2 text placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="password" placeholder="Password" aria-label="Password" />
+                            <label htmlFor="password">
+                                <p className='-mb-2 text-sm text-gray-800'>Password:</p>
+                                <input
+                                    id='password'
+                                    className="block w-full px-4 py-2 mt-2 text placeholder-gray-500 bg-white border rounded-lg focus:border-blue-400 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="password"
+                                    placeholder="Password"
+                                    aria-label="Password"
+                                    name='password'
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {
+                                    errors.password && touched.password ?
+                                        <p className='text-xs text-red-500 font-medium'>{errors.password}</p>
+                                        : null
+                                }
+                            </label>
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -29,7 +81,7 @@ const Login = () => {
 
                 <div className="flex items-center justify-center py-4 text-center">
                     <span className="text-sm text-gray-600">Don&apos;t have an account? </span>
-                    <Link href="#" className="mx-2 text-sm font-bold text-blue-500 hover:underline">Register</Link>
+                    <Link href="/register" className="mx-2 text-sm font-bold text-blue-500 hover:underline">Register</Link>
                 </div>
             </div>
         </div>
