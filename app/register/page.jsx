@@ -1,8 +1,8 @@
 'use client'
+import { signUpSchema } from '@/schemas';
 import { useFormik } from 'formik';
 import Link from 'next/link';
 import React from 'react'
-import { signUpSchema } from '../components/schemas';
 
 const initialValues = {
   name: '',
