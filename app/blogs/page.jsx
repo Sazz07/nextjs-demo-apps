@@ -14,7 +14,7 @@ const Blogs = () => {
         queryKey: ['/blogs'],
         queryFn: async () => {
             try {
-                const res = await fetch('https://api.slingacademy.com/v1/sample-data/blog-posts?limit=30');
+                const res = await fetch('https://api.slingacademy.com/v1/sample-data/blog-posts?limit=8');
                 const data = res.json();
                 return data;
             }
