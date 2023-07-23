@@ -34,17 +34,25 @@ const Blogs = () => {
         setShowCard(prevShowCard => prevShowCard + 4);
     }
 
+    const handleShowLess = () => {
+        setShowCard(prevShowCard => prevShowCard - 4);
+    }
+
     return (
         <div>
             <h1>All Blogs</h1>
             <div className="max-w-screen-xl mx-auto">
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-10">
                     {
-                        blogs.slice(0, showCard).map(blog => <BlogCard key={blog.id}>
+                        blogs.slice(0, showCard).map(blog => <BlogCard
+                            key={blog.id}
+                            blog={blog}
+                        >
                         </BlogCard>)
                     }
                 </div>
                 {showCard < blogs.length && (<button onClick={handleShowMore}>Show More</button>)}
+                {showCard > 8 && (<button onClick={handleShowLess}>Show less</button>)}
             </div>
         </div>
     )
