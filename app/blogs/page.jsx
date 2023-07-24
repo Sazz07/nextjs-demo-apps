@@ -47,26 +47,26 @@ const Blogs = () => {
       {limit < 30 && (
         <div className='flex justify-center pt-12'>
           <button
-            className='bg-blue-600 text-white px-4 py-3'
+            className='bg-blue-600 text-white px-4 py-3 uppercase font-medium'
             onClick={() => {
               handleShowMore();
               refetch();
             }}
           >
-            Show More
+            Load More
           </button>
         </div>
       )}
       {limit > 8 && (
         <div className='flex justify-center pt-12'>
           <button
-            className='bg-blue-600 text-white px-4 py-3'
+            className='bg-blue-600 text-white px-4 py-3 uppercase font-medium'
             onClick={() => {
               handleShowLess();
               refetch();
             }}
           >
-            Show Less
+            Load Less
           </button>
         </div>
       )}

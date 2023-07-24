@@ -5,7 +5,8 @@ const BlogCard = ({ blog }) => {
     const { id } = blog;
     return (
         <Link href={`/blogs/${id}`}>
-            <div className="relative flex items-end w-full text-left bg-center bg-cover h-96 dark:bg-gray-500 cursor-pointer" style={{ backgroundImage: "url('https://source.unsplash.com/random/240x320')" }}>
+            <div className="relative flex items-end w-full text-left bg-center bg-cover h-96 dark:bg-gray-500 cursor-pointer rounded-md">
+            
                 <div className="absolute top-0 left-0 right-0 bg-gradient-to-b via-transparent from-gray-900 to-gray-900"></div>
                 <div className="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
                     <h1 className="px-3 py-2 text-xs font-semibold uppercase text-gray-100 ">Politics</h1>

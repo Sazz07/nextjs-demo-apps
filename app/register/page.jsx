@@ -1,8 +1,9 @@
 'use client'
 import { signUpSchema } from '@/schemas';
 import { useFormik } from 'formik';
+import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 
 const initialValues = {
   name: '',
@@ -14,6 +15,23 @@ const initialValues = {
 
 
 const Register = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    console.log(event);
+    const file = event.target.files[0];
+    console.log(file);
+    const reader = new FileReader();
+    console.log(reader);
+
+    reader.onloadend = () => {
+      setSelectedImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
 
   const { values, handleBlur, handleChange, handleSubmit, errors, touched } = useFormik({
     initialValues,
@@ -24,11 +42,21 @@ const Register = () => {
   });
 
   return (
-    <div className='min-h-screen flex justify-center items-center'>
+    <div className='min-h-screen flex justify-center items-center py-20'>
       <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg border">
         <div className="px-6 py-4">
           <h3 className="my-3 text-xl font-medium text-center">Create account</h3>
           <form className='space-y-6' autoComplete='none' onSubmit={handleSubmit}>
+            {selectedImage && (
+              <Image
+                className='rounded-full object-cover object-center h-40 w-40 p-5 mx-auto'
+                src={selectedImage}
+                alt='Uploaded Preview'
+                width={500}
+                height={500}>
+              </Image>
+            )
+            }
             <div className="w-full">
               <label htmlFor="name">
                 <p className='-mb-2 text-sm text-gray-800'>Name:</p>
@@ -50,7 +78,6 @@ const Register = () => {
                   : null
               }
             </div>
-
             <div className="w-full">
               <label htmlFor="email">
                 <p className='-mb-2 text-sm text-gray-800'>Email:</p>
@@ -114,6 +141,21 @@ const Register = () => {
                 }
               </label>
             </div>
+            {/* Image upload field start */}
+            <div>
+              {/* <p className='text-sm text-gray-800'>Your Image:</p> */}
+              <div className="flex w-full items-center justify-center">
+                <label className="w-full flex items-center px-4 py-1 justify-center rounded-lg border-[3px] hover:border-gray-400 cursor-pointer border-dashed hover:bg-blue-400 hover:text-white">
+                  <svg className="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                  </svg>
+                  {!selectedImage ? (<span className="pl-1">Select a Image</span>) : (<span className="pl-1">Change Image</span>)
+                  }
+                  <input type='file' className="hidden" onChange={handleImageChange} />
+                </label>
+              </div>
+            </div>
+            {/* Image upload field end */}
             <div className="flex flex-col">
               <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" type='submit'>
                 Create Account
