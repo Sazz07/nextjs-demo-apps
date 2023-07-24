@@ -1,61 +1,78 @@
 'use client'
-// import { getBlogPost } from '@/api'
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
-import BlogCard from './components/BlogCard'
+import BlogCard from './components/BlogCard';
 
 const Blogs = () => {
-    // const { data: posts, isLoading } = useQuery({
-    //     queryKey: ['/blogs'],
-    //     queryFn: getBlogPost
-    // })
-    const [showCard, setShowCard] = useState(8);
-    const { data: posts, isLoading } = useQuery({
-        queryKey: ['/blogs'],
-        queryFn: async () => {
-            try {
-                const res = await fetch('https://api.slingacademy.com/v1/sample-data/blog-posts?limit=8');
-                const data = res.json();
-                return data;
-            }
-            catch (error) {
-                console.log(error);
-            }
-        }
-    })
-
-    if (isLoading) {
-        return <h1>Loading..........</h1>
+  const [limit, setLimit] = useState(8);
+  
+  const { data: blogsDetails, isLoading, refetch } = useQuery({
+    queryKey: ['/blogs', limit],
+    queryFn: async () => {
+      try {
+        const res = await fetch(`https://api.slingacademy.com/v1/sample-data/blog-posts?&limit=${limit}`);
+        const data = res.json();
+        return data;
+      }
+      catch (error) {
+        console.log(error);
+      }
     }
+  });
 
-    const { blogs } = posts;
+  const handleShowMore = () => {
+    setLimit((prevLimit) => Math.min(prevLimit + 22, 30));
+  }
 
-    const handleShowMore = () => {
-        setShowCard(prevShowCard => prevShowCard + 4);
-    }
+  const handleShowLess = () => {
+    setLimit((prevLimit) => Math.max(prevLimit - 22, 8));
+  }
 
-    const handleShowLess = () => {
-        setShowCard(prevShowCard => prevShowCard - 4);
-    }
 
-    return (
-        <div>
-            <h1>All Blogs</h1>
-            <div className="max-w-screen-xl mx-auto">
-                <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-10">
-                    {
-                        blogs.slice(0, showCard).map(blog => <BlogCard
-                            key={blog.id}
-                            blog={blog}
-                        >
-                        </BlogCard>)
-                    }
-                </div>
-                {showCard < blogs.length && (<button onClick={handleShowMore}>Show More</button>)}
-                {showCard > 8 && (<button onClick={handleShowLess}>Show less</button>)}
-            </div>
+  if (isLoading) {
+    return <h1>Loading....</h1>
+  }
+
+  const { blogs } = blogsDetails;
+
+
+  return (
+    <div className='max-w-screen-xl mx-auto py-12'>
+      <h1>Blogs</h1>
+      <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-10'>
+        {blogs.map((blog) => (
+          <BlogCard key={blog.id} blog={blog}></BlogCard>
+        ))}
+      </div>
+      {limit < 30 && (
+        <div className='flex justify-center pt-12'>
+          <button
+            className='bg-blue-600 text-white px-4 py-3'
+            onClick={() => {
+              handleShowMore();
+              refetch();
+            }}
+          >
+            Show More
+          </button>
         </div>
-    )
+      )}
+      {limit > 8 && (
+        <div className='flex justify-center pt-12'>
+          <button
+            className='bg-blue-600 text-white px-4 py-3'
+            onClick={() => {
+              handleShowLess();
+              refetch();
+            }}
+          >
+            Show Less
+          </button>
+        </div>
+      )}
+    </div>
+
+  )
 }
 
 export default Blogs;

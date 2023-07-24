@@ -12,7 +12,7 @@ const Footer = () => {
                             <Link href="#">
                                 <Image
                                     className="w-auto h-7"
-                                    src="https://merakiui.com/images/full-logo.svg"
+                                    src="/blog.jpg"
                                     alt="Blog Logo"
                                     width={500}
                                     height={500}
