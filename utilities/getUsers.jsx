@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-function GetUser() {
+const GetUser = () => {
     return useQuery({
         queryKey: ["currentUser"],
         queryFn: () => {

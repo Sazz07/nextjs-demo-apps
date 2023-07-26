@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import GetUser from '@/utilities/getUsers';
+import { toast } from 'react-hot-toast';
 
 
 const links = [
@@ -22,7 +25,16 @@ const links = [
 ];
 
 const Navbar = () => {
+    const pathName = usePathname();
     const [showMenu, setShowMenu] = useState(false);
+    const { data: currentUser, refetch } = GetUser();
+
+    const handleLogOut = () => {
+        localStorage.removeItem('currentUser');
+        toast.success('Logout Successfully');
+        refetch();
+    };
+
     return (
         <nav className='bg-red-400 w-full p-5 flex justify-between items-center sticky top-0 z-50'>
             <div className='flex items-center justify-between w-full'>
@@ -59,6 +71,11 @@ const Navbar = () => {
                     {
                         links.map(link => <li key={link.url}><Link href={link.url}>{link.title}</Link></li>)
                     }
+                    <li
+                        onClick={() => handleLogOut()}
+                        className='cursor-pointer'>
+                        Logout
+                    </li>
                 </ul>
             </div>
             <div>
@@ -73,6 +90,11 @@ const Navbar = () => {
                             </Link>
                         </li>)
                     }
+                    <li
+                        onClick={() => handleLogOut()}
+                        className='cursor-pointer'>
+                        Logout
+                    </li>
                 </ul>
             </div>
         </nav>
