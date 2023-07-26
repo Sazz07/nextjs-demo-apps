@@ -1,23 +1,42 @@
+'use client'
+import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
+import { blogImages } from './BlogImages';
 
-const BlogCard = ({ blog }) => {
-    const { id } = blog;
+
+
+const BlogCard = ({ blog, index }) => {
+    const { id, category, content_text, created_at, description, photo_url, title } = blog;
+    console.log(index);
+    // Formatting Date/Time
+    const dtObject = new Date(created_at);
+    const formDate = dtObject.toLocaleString();
+    const time = formDate.split(', ')
+
+
     return (
-        <Link href={`/blogs/${id}`}>
-            <div className="relative flex items-end w-full text-left bg-center bg-cover h-96 dark:bg-gray-500 cursor-pointer rounded-md">
-            
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-b via-transparent from-gray-900 to-gray-900"></div>
-                <div className="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
-                    <h1 className="px-3 py-2 text-xs font-semibold uppercase text-gray-100 ">Politics</h1>
-                    <div className="flex flex-col text-center dark:text-gray-100">
-                        <span className="text-3xl font-semibold">04</span>
-                        <span className="uppercase">Aug</span>
-                    </div>
+        <Link href={`blogs/${id}?index=${index}`}>
+            <div className='relative'>
+                <div className=''>
+                    <Image src={blogImages[index]} width={500} height={500} alt='blogsPhoto' className='w-full rounded-t-md md:h-52'
+                        priority></Image>
                 </div>
-                <h2 className="z-10 p-5">
-                    <a href="#" className="font-medium text-md hover:underline text-gray-100">Autem sunt tempora mollitia magnam non voluptates</a>
-                </h2>
+                <div className='absolute top-3 right-3 bg-white bg-opacity-60 rounded-md px-2 py-1 flex items-center'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                        className="w-5 h-4 text-gray-800">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>{time[1].slice()}</span>
+                </div>
+                <div className='space-y-2 p-3 border-2 border-t-0 border-gray-200 rounded-b-md'>
+                    <h3 className='text-gray-500 uppercase'>{category}</h3>
+                    <h1 className='text-xl font-semibold line-clamp-1'>{title}</h1>
+                    <p className='text-justify line-clamp-4 text-sm'>{content_text}</p>
+                    <Link href={`/blogs/${id}`}>
+                        <button className='text-sm text-blue-700 pt-5'>Read More...</button>
+                    </Link>
+                </div>
             </div>
         </Link>
     )

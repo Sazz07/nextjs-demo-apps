@@ -1,103 +1,82 @@
 import React, { useState } from 'react'
-import Button from '../button/Button';
 import Link from 'next/link';
-import { RxHamburgerMenu } from "react-icons/rx";
+
 
 const links = [
     {
-        id: 1,
         title: "Home",
         url: "/",
     },
     {
-        id: 2,
-        title: "Blog",
-        url: "/blog",
+        title: "Blogs",
+        url: "/blogs",
     },
     {
-        id: 3,
         title: "About",
         url: "/about",
     },
     {
-        id: 4,
         title: "Dashboard",
         url: "/dashboard",
     },
 ];
 
-// const Navbar = () => {
-//     return (
-//         <header>
-//             <nav className='bg-emerald-200 w-full md:flex justify-between items-center p-4'>
-//                 <h1>Logo</h1>
-//                 <div className='flex items-center gap-3'>
-//                     <ul className='md:flex gap-3'>
-//                         {
-//                             links.map(link=> <li key={link.id}><Link href={link.url}>{link.title}</Link></li>)
-//                         }
-//                     </ul>
-//                 </div>
-//             </nav>
-//         </header>
-//     )
-// }
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-
+    const [showMenu, setShowMenu] = useState(false);
     return (
-        <nav className="bg-blue-500 p-4">
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <div>
-                    <a href="/" className="text-white font-bold text-xl">Logo</a>
-                </div>
-                <div className="hidden md:flex space-x-4">
-                    <a href="#" className="text-white hover:bg-blue-600 px-3 py-2 rounded">Home</a>
-                    <a href="#" className="text-white hover:bg-blue-600 px-3 py-2 rounded">About</a>
-                    <a href="#" className="text-white hover:bg-blue-600 px-3 py-2 rounded">Contact</a>
-                </div>
-                <div className="md:hidden">
-                    <button onClick={toggleMenu} className="text-white focus:outline-none">
+        <nav className='bg-red-400 w-full p-5 flex justify-between items-center sticky top-0 z-50'>
+            <div className='flex items-center justify-between w-full'>
+                <Link href={'/'}>
+                    <h1>Logo</h1>
+                </Link>
+                {
+                    showMenu ?
                         <svg
-                            className="w-6 h-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24" strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6 md:hidden"
+                            onClick={() => setShowMenu(false)}
                         >
-                            {isOpen ? (
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            ) : (
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 6h16M4 12h16m-7 6h7"
-                                />
-                            )}
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                    </button>
-                </div>
-            </div>
-            {isOpen && (
-                <div className="md:hidden bg-blue-400 py-2">
-                    <a href="#" className="block text-white hover:bg-blue-600 px-3 py-2">Home</a>
-                    <a href="#" className="block text-white hover:bg-blue-600 px-3 py-2">About</a>
-                    <a href="#" className="block text-white hover:bg-blue-600 px-3 py-2">Contact</a>
-                </div>
-            )}
-        </nav>
-    );
-};
+                        :
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24"
+                            strokeWidth={1.5} stroke="currentColor"
+                            className="w-6 h-6 md:hidden"
+                            onClick={() => setShowMenu(true)}
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
 
+                }
+            </div>
+            <div>
+                <ul className='hidden md:flex items-center justify-between gap-5'>
+                    {
+                        links.map(link => <li key={link.url}><Link href={link.url}>{link.title}</Link></li>)
+                    }
+                </ul>
+            </div>
+            <div>
+                <ul className={`bg-red-400 bg-opacity-90 text-white flex flex-col justify-center items-center gap-5 md:hidden absolute top-16 transition-all duration-500 h-screen ease-in w-full z-100 ${showMenu ? "left-20" : "left-[-678px]"} ${showMenu && "ml-[-5rem]"}`}>
+                    {
+                        links.map(link => <li key={link.id} className='w-full border-t-2 border-b-2 text-center py-2'>
+                            <Link
+                                href={link.url}
+                                className='text-xl'
+                                onClick={() => setShowMenu(false)}
+                            >{link.title}
+                            </Link>
+                        </li>)
+                    }
+                </ul>
+            </div>
+        </nav>
+    )
+}
 
 export default Navbar;

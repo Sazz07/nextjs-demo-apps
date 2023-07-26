@@ -3,9 +3,11 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import BlogCard from './components/BlogCard';
 
+
+
 const Blogs = () => {
   const [limit, setLimit] = useState(8);
-  
+
   const { data: blogsDetails, isLoading, refetch } = useQuery({
     queryKey: ['/blogs', limit],
     queryFn: async () => {
@@ -40,8 +42,8 @@ const Blogs = () => {
     <div className='max-w-screen-xl mx-auto py-12'>
       <h1>Blogs</h1>
       <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-10'>
-        {blogs.map((blog) => (
-          <BlogCard key={blog.id} blog={blog}></BlogCard>
+        {blogs.map((blog, index) => (
+          <BlogCard key={blog.id} blog={blog} index={index}></BlogCard>
         ))}
       </div>
       {limit < 30 && (

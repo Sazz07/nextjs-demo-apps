@@ -12,7 +12,7 @@ const initialValues = {
 
 const Login = () => {
 
-    const {values, handleBlur, handleChange, errors, handleSubmit, touched} = useFormik({
+    const { values, handleBlur, handleChange, errors, handleSubmit, touched } = useFormik({
         initialValues,
         validationSchema: signUpSchema,
         onSubmit: (values, action) => {
@@ -71,10 +71,10 @@ const Login = () => {
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <Link href="#" className="text-sm text-gray-600 hover:text-gray-700">Forget Password?</Link>
                             <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                 Sign In
                             </button>
+                            <Link href="#" className="text-sm text-gray-600 hover:text-gray-700">Forget Password?</Link>
                         </div>
                     </form>
                 </div>
