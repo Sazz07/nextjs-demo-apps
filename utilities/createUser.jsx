@@ -15,6 +15,7 @@ export const createUser = (user) => {
                 name: user.name,
                 email: user.email,
                 password: user.password,
+                image: user.image
             };
             localStorage.setItem('createUser', JSON.stringify(loginUser));
 
@@ -28,6 +29,7 @@ export const createUser = (user) => {
             name: user.name,
             email: user.email,
             password: user.password,
+            image: user.image
         };
         localStorage.setItem('currentUser', JSON.stringify(loginUser));
 

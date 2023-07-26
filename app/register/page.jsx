@@ -1,26 +1,50 @@
-'use client'
-import { signUpSchema } from '@/schemas';
+"use client"
+import { createUser } from '@/utilities/createUser';
+import GetUser from '@/utilities/getUsers';
 import { useFormik } from 'formik';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import { toast } from 'react-hot-toast';
+
+import * as Yup from 'yup';
+
+const signUpSchema = Yup.object({
+  name: Yup.string().min(2).max(25).required('Please enter your name'),
+  email: Yup.string().email().required('Please enter your email'),
+  password: Yup.string().min(6).required('Please enter your password'),
+  confirm_password: Yup.string().required('Please confirm password').oneOf([Yup.ref('password'), null], '*Password must be matched'),
+});
 
 const initialValues = {
   name: '',
   email: '',
   password: '',
-  confirm_password: ''
+  confirm_password: '',
+  image: null
 }
 
 
+
 const Register = () => {
+  const router = useRouter();
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const { refetch } = GetUser();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
+
     reader.onloadend = () => {
       setSelectedImage(reader.result);
+      handleChange({
+        target: {
+          name: 'image',
+          value: reader.result,
+        },
+      });
     };
 
     if (file) {
@@ -32,8 +56,19 @@ const Register = () => {
     initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      action.resetForm()
-    }
+      console.log("🚀 ~ file: page.jsx:28 ~ Register ~ values:", values);
+      const result = createUser(values);
+      if (result === 'User already exists') {
+        toast.error(result)
+      } else {
+        action.resetForm();
+        toast.success(result);
+        refetch();
+        const intendedDestination = localStorage.getItem('intendedDestination');
+        router.push(intendedDestination ?? '/');
+        localStorage.removeItem("intendedDestination");
+      }
+    },
   });
 
   return (
@@ -41,17 +76,17 @@ const Register = () => {
       <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg border">
         <div className="px-6 py-4">
           <h3 className="my-3 text-xl font-medium text-center">Create account</h3>
-          <form className='space-y-6' autoComplete='none' onSubmit={handleSubmit}>
-            {selectedImage && (
-              <Image
-                className='rounded-full object-cover object-center h-40 w-40 p-5 mx-auto'
-                src={selectedImage}
-                alt='Uploaded Preview'
-                width={500}
-                height={500}>
-              </Image>
-            )
-            }
+          {selectedImage && (
+            <Image
+              className='rounded-full object-cover object-center h-40 w-40 p-5 mx-auto'
+              src={selectedImage}
+              alt='Uploaded Preview'
+              width={500}
+              height={500}>
+            </Image>
+          )
+          }
+          <form className='space-y-6' onSubmit={handleSubmit}>
             <div className="w-full">
               <label htmlFor="name">
                 <p className='-mb-2 text-sm text-gray-800'>Name:</p>
@@ -87,12 +122,12 @@ const Register = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {
-                  errors.email && touched.email ?
-                    <p className='text-xs text-red-500 font-medium'>{errors.email}</p>
-                    : null
-                }
               </label>
+              {
+                errors.email && touched.email ?
+                  <p className='text-xs text-red-500 font-medium'>{errors.email}</p>
+                  : null
+              }
             </div>
 
             <div className="w-full">
@@ -108,12 +143,12 @@ const Register = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {
-                  errors.password && touched.password ?
-                    <p className='text-xs text-red-500 font-medium'>{errors.password}</p>
-                    : null
-                }
               </label>
+              {
+                errors.password && touched.password ?
+                  <p className='text-xs text-red-500 font-medium'>{errors.password}</p>
+                  : null
+              }
             </div>
 
             <div className="w-full">
@@ -129,13 +164,14 @@ const Register = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {
-                  errors.confirm_password && touched.confirm_password ?
-                    <p className='text-xs text-red-500 font-medium'>{errors.confirm_password}</p>
-                    : null
-                }
               </label>
+              {
+                errors.confirm_password && touched.confirm_password ?
+                  <p className='text-xs text-red-500 font-medium'>{errors.confirm_password}</p>
+                  : null
+              }
             </div>
+
             {/* Image upload field start */}
             <div>
               {/* <p className='text-sm text-gray-800'>Your Image:</p> */}
@@ -146,11 +182,19 @@ const Register = () => {
                   </svg>
                   {!selectedImage ? (<span className="pl-1">Select a Image</span>) : (<span className="pl-1">Change Image</span>)
                   }
-                  <input type='file' className="hidden" onChange={handleImageChange} />
+                  <input
+                    type='file'
+                    className="hidden"
+                    onChange={handleImageChange}
+                    id='image'
+                    name='image'
+                    onBlur={handleBlur}
+                  />
                 </label>
               </div>
             </div>
             {/* Image upload field end */}
+
             <div className="flex flex-col">
               <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" type='submit'>
                 Create Account

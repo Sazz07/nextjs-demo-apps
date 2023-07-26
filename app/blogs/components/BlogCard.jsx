@@ -11,8 +11,8 @@ const BlogCard = ({ blog, index }) => {
     console.log(index);
     // Formatting Date/Time
     const dtObject = new Date(created_at);
-    const formDate = dtObject.toLocaleString();
-    const time = formDate.split(', ')
+    const options = { day: 'numeric', month: 'long' };
+    const formDate = dtObject.toLocaleString(undefined, options);
 
 
     return (
@@ -27,7 +27,7 @@ const BlogCard = ({ blog, index }) => {
                         className="w-5 h-4 text-gray-800">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>{time[1].slice()}</span>
+                    <span>{formDate}</span>
                 </div>
                 <div className='space-y-2 p-3 border-2 border-t-0 border-gray-200 rounded-b-md'>
                     <h3 className='text-gray-500 uppercase'>{category}</h3>

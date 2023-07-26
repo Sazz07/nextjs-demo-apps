@@ -47,30 +47,20 @@ const PostDetails = ({ params: { id } }) => {
   const { blog } = postDetails;
   console.log(blog);
   const { category, title, content_text, photo_url, created_at, description } = blog;
-  console.log(category);
 
   // Formating date
   const dtObject = new Date(created_at);
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   const formDate = dtObject.toLocaleString(undefined, options);
 
-  console.log(formDate);
-
-  // console.log(dtObject);
-  console.log(formDate);
-
   if (categoryLoading) {
     return <h1>Loading.....</h1>
   }
 
   const { blogs } = categoryWise;
-  console.log(blogs);
+
   const categoryBlog = blogs.filter((blog) => blog?.category === category);
   const restOfBlog = categoryBlog.filter(cate => cate?.id !== parseInt(id));
-
-  console.log('rest', restOfBlog);
-
-  console.log(categoryBlog);
 
   return (
     <div className='max-w-screen-xl mx-auto px-5 md:px-0 py-5 md:py-14'>

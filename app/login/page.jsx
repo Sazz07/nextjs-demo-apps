@@ -16,6 +16,7 @@ const Login = () => {
         initialValues,
         validationSchema: signUpSchema,
         onSubmit: (values, action) => {
+            console.log("🚀 ~ file: page.jsx:19 ~ Login ~ values:", values)
             action.resetForm();
         }
     });
