@@ -36,7 +36,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className='bg-red-400 w-full p-5 flex justify-between items-center sticky top-0 z-50'>
+        <nav className='bg-gray-50 w-full py-6 px-20 flex justify-between items-center sticky top-0 z-50 shadow-sm'>
             <div className='flex items-center justify-between w-full'>
                 <Link href={'/'}>
                     <h1>Logo</h1>
@@ -69,11 +69,16 @@ const Navbar = () => {
             <div>
                 <ul className='hidden md:flex items-center justify-between gap-5'>
                     {
-                        links.map(link => <li key={link.url}><Link href={link.url}>{link.title}</Link></li>)
+                        links.map(link => <li
+                            key={link.url}
+                            className='hover:underline decoration-primary decoration-2 hover:text-primary'
+                        >
+                            <Link href={link.url}>{link.title}</Link>
+                        </li>)
                     }
                     <li
                         onClick={() => handleLogOut()}
-                        className='cursor-pointer'>
+                        className='cursor-pointer hover:underline decoration-primary decoration-2 hover:text-primary'>
                         Logout
                     </li>
                 </ul>

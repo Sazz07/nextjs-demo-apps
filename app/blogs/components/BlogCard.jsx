@@ -33,7 +33,7 @@ const BlogCard = ({ blog, index }) => {
                     <h3 className='text-gray-500 uppercase'>{category}</h3>
                     <h1 className='text-xl font-semibold line-clamp-1'>{title}</h1>
                     <p className='text-justify line-clamp-4 text-sm'>{content_text}</p>
-                    <Link href={`/blogs/${id}`}>
+                    <Link href={`blogs/${id}?index=${index}`}>
                         <button className='text-sm text-blue-700 pt-5'>Read More...</button>
                     </Link>
                 </div>

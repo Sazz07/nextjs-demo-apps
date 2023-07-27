@@ -1,4 +1,5 @@
 'use client'
+import Button from "@/components/button/Button";
 // import { getBlogPost } from "@/api"
 import { useQuery } from "@tanstack/react-query"
 import Image from "next/image";
@@ -7,7 +8,7 @@ export default function Home() {
 
   const { data: posts, isLoading } = useQuery({
     queryKey: ['home/posts'],
-    queryFn:  async () => {
+    queryFn: async () => {
       try {
         const res = await fetch('https://api.slingacademy.com/v1/sample-data/blog-posts?limit=30');
         const data = res.json();
@@ -29,7 +30,15 @@ export default function Home() {
     <main>
       {/* banner section start */}
       <section>
-        <h1>Home</h1>
+        <div className="bg-[url('/banner.webp')] h-screen bg-no-repeat w-full bg-cover bg-center flex items-center">
+          <div className="text-white w-full md:w-1/2 px-20 space-y-4">
+            <h1 className="text-8xl font-bold">&lt;Blog&gt;</h1>
+            <p className="text-lg text-justify font-medium">Welcome to our amazing blog! Explore the latest articles and stay up-to-date with our exciting content. Our team of passionate writers covers a wide range of topics, including technology, travel, health, lifestyle, and much more. Whether you&apos;re a casual reader or a dedicated enthusiast, there&apos;s something for everyone!</p>
+            <div>
+              <Button>Read the Blog</Button>
+            </div>
+          </div>
+        </div>
       </section>
       {/* banner section end */}
       {/* Blog Post section start */}

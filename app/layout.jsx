@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <QueryClientProvider client={queryClient}>
-          <Toaster position="top-right" />
+          <Toaster />
           <Navbar />
           <div className='min-h-screen'>
             {children}
