@@ -36,7 +36,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className='bg-gray-50 w-full py-6 px-20 flex justify-between items-center sticky top-0 z-50 shadow-sm'>
+        <nav className='bg-gray-50 w-full py-6 px-20 flex justify-between items-center sticky top-0 z-50 shadow-md'>
             <div className='flex items-center justify-between w-full'>
                 <Link href={'/'}>
                     <h1>Logo</h1>
