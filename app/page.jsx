@@ -47,11 +47,11 @@ export default function Home() {
           <h1 className="text-4xl font-bold">Blog Categories</h1>
           <p className="text-2xl">&quot;Love, gaming, programming, math - Explore, play, code, calculate!&quot;</p>
         </div>
-        <div className="w-full grid md:grid-cols-2 lg:grid-cols-4 gap-9">
+        <div className="w-full grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <article className="relative cursor-pointer border-0 group">
             <div className="overflow-hidden">
               <Image
-                className="h-96 w-full transform duration-300 group-hover:scale-110"
+                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
                 src={'/love.jpg'}
                 alt="love"
                 width={500}
@@ -66,7 +66,7 @@ export default function Home() {
           <article className="relative cursor-pointer border-0 group">
             <div className="overflow-hidden">
               <Image
-                className="h-96 w-full transform duration-300 group-hover:scale-110"
+                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
                 src={'/gaming.avif'}
                 alt="love"
                 width={500}
@@ -81,7 +81,7 @@ export default function Home() {
           <article className="relative cursor-pointer border-0 group">
             <div className="overflow-hidden">
               <Image
-                className="h-96 w-full transform duration-300 group-hover:scale-110"
+                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
                 src={'/programming.avif'}
                 alt="love"
                 width={500}
@@ -96,7 +96,7 @@ export default function Home() {
           <article className="relative cursor-pointer border-0 group">
             <div className="overflow-hidden">
               <Image
-                className="h-96 w-full transform duration-300 group-hover:scale-110"
+                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
                 src={'/math.avif'}
                 alt="love"
                 width={500}
