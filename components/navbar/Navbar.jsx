@@ -86,7 +86,7 @@ const Navbar = () => {
             <div>
                 <ul className={`bg-red-400 bg-opacity-90 text-white flex flex-col justify-center items-center gap-5 md:hidden absolute top-16 transition-all duration-500 h-screen ease-in w-full z-100 ${showMenu ? "left-20" : "left-[-678px]"} ${showMenu && "ml-[-5rem]"}`}>
                     {
-                        links.map(link => <li key={link.id} className='w-full border-t-2 border-b-2 text-center py-2'>
+                        links.map(link => <li key={link.url} className='w-full border-t-2 border-b-2 text-center py-2'>
                             <Link
                                 href={link.url}
                                 className='text-xl'

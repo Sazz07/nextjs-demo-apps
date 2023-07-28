@@ -8,12 +8,11 @@ import { blogImages } from './BlogImages';
 
 const BlogCard = ({ blog, index }) => {
     const { id, category, content_text, created_at, description, photo_url, title } = blog;
-    console.log(index);
+
     // Formatting Date/Time
     const dtObject = new Date(created_at);
     const options = { day: 'numeric', month: 'long' };
     const formDate = dtObject.toLocaleString(undefined, options);
-
 
     return (
         <Link href={`blogs/${id}?index=${index}`}>

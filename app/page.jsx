@@ -1,31 +1,9 @@
 'use client'
 import Button from "@/components/button/Button";
-// import { getBlogPost } from "@/api"
-import { useQuery } from "@tanstack/react-query"
 import Image from "next/image";
 
 export default function Home() {
 
-  const { data: posts, isLoading } = useQuery({
-    queryKey: ['home/posts'],
-    queryFn: async () => {
-      try {
-        const res = await fetch('https://api.slingacademy.com/v1/sample-data/blog-posts?limit=30');
-        const data = res.json();
-        return data;
-      }
-      catch (error) {
-        console.log(error);
-      }
-    }
-  })
-
-  if (isLoading) {
-    return <h1>loading....</h1>
-  }
-
-  // const title1 = posts.posts[0].title;s
-  console.log(posts.blogs);
   return (
     <main>
       {/* banner section start */}

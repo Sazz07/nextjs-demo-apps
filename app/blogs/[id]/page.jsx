@@ -1,12 +1,11 @@
 'use client'
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'next/navigation'
 import { blogImages } from '../components/BlogImages';
 import RelatedCard from './components/RelatedCard';
 import Button from '@/components/button/Button';
-import { data } from 'autoprefixer';
 
 const PostDetails = ({ params: { id } }) => {
   const [readMore, setReadMore] = useState(false);
@@ -30,15 +29,6 @@ const PostDetails = ({ params: { id } }) => {
       }
     }
   });
-
-  // get comments for this post
-  // Function to fetch comments for the specific post from local storage
-  // const fetchComments = () => {
-  //   const existingComments = JSON.parse(localStorage.getItem('postComments')) || [];
-  //   const postComments = existingComments.filter((c) => c.postId === id);
-  //   setComments(postComments);
-  //   console.log(postComments);
-  // };
 
   const { data: com, isLoading: commentsLoading, refetch } = useQuery({
     queryKey: ['/blog/comments'],
@@ -72,21 +62,6 @@ const PostDetails = ({ params: { id } }) => {
     }
   });
 
-
-
-
-  // Fetch comments for the specific post on initial render and clear comments when component unmounts
-  // useEffect(() => {
-  //   fetchComments();
-
-  //   // Clear comments when component unmounts or when 'id' changes
-  //   return () => {
-  //     setComments([]);
-  //   };
-  // }, [id]);
-
-
-
   if (isLoading) {
     return <h1>Loading......</h1>
   }
@@ -112,9 +87,6 @@ const PostDetails = ({ params: { id } }) => {
     return <h1>Loading...</h1>
   }
 
-  console.log('com', com);
-
-
   // Function to handle form submission and add comment to local storage
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -132,8 +104,6 @@ const PostDetails = ({ params: { id } }) => {
       refetch();
     }
   };
-
-
 
   return (
     <div className='max-w-screen-xl mx-auto px-5 md:px-0 py-5 md:py-14'>
