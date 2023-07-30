@@ -11,7 +11,7 @@ export default function Home() {
         <div className="bg-[url('/banner.webp')] h-screen bg-no-repeat w-full bg-cover bg-center flex items-center bg-fixed">
           <div className="text-white w-full md:w-1/2 px-20 space-y-4">
             <h1 className="text-8xl font-bold">&lt;Blog&gt;</h1>
-            <p className="text-lg text-justify font-medium">Welcome to our amazing blog! Explore the latest articles and stay up-to-date with our exciting content. Our team of passionate writers covers a wide range of topics, including technology, travel, health, lifestyle, and much more. Whether you&apos;re a casual reader or a dedicated enthusiast, there&apos;s something for everyone!</p>
+            <p className="font-medium">Welcome to our amazing blog! Explore the latest articles and stay up-to-date with our exciting content. Our team of passionate writers covers a wide range of topics, including technology, travel, health, lifestyle, and much more. Whether you&apos;re a casual reader or a dedicated enthusiast, there&apos;s something for everyone!</p>
             <div>
               <Button>Read the Blog</Button>
             </div>
@@ -21,7 +21,7 @@ export default function Home() {
       {/* banner section end */}
       {/* Blog categories section start */}
       <section className="max-w-7xl mx-auto py-24">
-        <div className="text-center space-y-4 pb-10">
+        <div className="text-center space-y-4 pb-12">
           <h1 className="text-4xl font-bold">Blog Categories</h1>
           <p className="text-2xl">&quot;Love, gaming, programming, math - Explore, play, code, calculate!&quot;</p>
         </div>

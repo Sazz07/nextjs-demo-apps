@@ -5,7 +5,7 @@ const GetUser = () => {
         queryKey: ["currentUser"],
         queryFn: () => {
             const data = localStorage.getItem("currentUser");
-            return data ? JSON.parse(data) : null;
+            return data && JSON.parse(data);
         },
     });
 }

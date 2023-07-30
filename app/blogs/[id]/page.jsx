@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { blogImages } from '../components/BlogImages';
 import RelatedCard from './components/RelatedCard';
 import Button from '@/components/button/Button';
+import GetUser from '@/utilities/getUsers';
 
 const PostDetails = ({ params: { id } }) => {
   const [readMore, setReadMore] = useState(false);
@@ -62,6 +63,8 @@ const PostDetails = ({ params: { id } }) => {
     }
   });
 
+  const { data: currentUser } = GetUser();
+
   if (isLoading) {
     return <h1>Loading......</h1>
   }
@@ -87,12 +90,13 @@ const PostDetails = ({ params: { id } }) => {
     return <h1>Loading...</h1>
   }
 
-  // Function to handle form submission and add comment to local storage
+  // handle form submission and add comment to local storage
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment.trim() !== '') {
       const newComment = {
-        id: Date.now(),
+        // id: Date.now(),
+        userEmail: currentUser?.email,
         postId: id,
         text: comment,
       };
@@ -108,7 +112,7 @@ const PostDetails = ({ params: { id } }) => {
   return (
     <div className='max-w-screen-xl mx-auto px-5 md:px-0 py-5 md:py-14'>
       <div className='w-full md:flex gap-8'>
-        <div className='p-2 w-full md:w-3/5 overflow-hidden'>
+        <div className='w-full md:w-3/5 overflow-hidden'>
           <div className='w-full relative'>
             <Image src={blogImages[index]} alt='blog_photo' width={500} height={500} className='w-full h-96 object-cover rounded-lg' priority></Image>
             <div className='w-full absolute top-0 p-3  flex justify-between items-center'>
@@ -161,8 +165,8 @@ const PostDetails = ({ params: { id } }) => {
       </div>
 
       {/* Comment Form */}
-      <form className='pt-4' onSubmit={handleSubmit}>
-        <div className='flex flex-col'>
+      <form className='py-4' onSubmit={handleSubmit}>
+        <div className='flex flex-col py-4'>
           <label htmlFor='comment' className='text-xl font-semibold'>
             Add a Comment:
           </label>
@@ -180,8 +184,8 @@ const PostDetails = ({ params: { id } }) => {
       </form>
 
       {/* Display Comments */}
-      <div className='pt-4'>
-        <h2 className='text-2xl font-semibold'>Comments</h2>
+      <div className=''>
+        <h2 className='text-2xl font-semibold'>Comments:</h2>
         <hr className='border-1 border-black' />
         {com.length > 0 ? (
           <ul className='pt-4 space-y-2'>

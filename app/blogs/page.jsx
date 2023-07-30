@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import BlogCard from './components/BlogCard';
+import Button from '@/components/button/Button';
 
 
 
@@ -23,11 +24,11 @@ const Blogs = () => {
   });
 
   const handleShowMore = () => {
-    setLimit((prevLimit) => Math.min(prevLimit + 22, 30));
+    setLimit((prevLimit) => Math.min(prevLimit + 12, 20));
   }
 
   const handleShowLess = () => {
-    setLimit((prevLimit) => Math.max(prevLimit - 22, 8));
+    setLimit((prevLimit) => Math.max(prevLimit - 12, 8));
   }
 
 
@@ -39,37 +40,35 @@ const Blogs = () => {
 
 
   return (
-    <div className='max-w-screen-xl mx-auto py-12'>
-      <h1>Blogs</h1>
-      <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-10'>
+    <div className='max-w-screen-xl mx-auto py-24'>
+      <h1 className='text-4xl font-bold'>Blogs</h1>
+      <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-10 py-12'>
         {blogs.map((blog, index) => (
           <BlogCard key={blog.id} blog={blog} index={index}></BlogCard>
         ))}
       </div>
-      {limit < 30 && (
+      {limit < 20 && (
         <div className='flex justify-center pt-12'>
-          <button
-            className='bg-blue-600 text-white px-4 py-3 uppercase font-medium'
+          <Button
             onClick={() => {
               handleShowMore();
               refetch();
             }}
           >
             Load More
-          </button>
+          </Button>
         </div>
       )}
       {limit > 8 && (
         <div className='flex justify-center pt-12'>
-          <button
-            className='bg-blue-600 text-white px-4 py-3 uppercase font-medium'
+          <Button
             onClick={() => {
               handleShowLess();
               refetch();
             }}
           >
             Load Less
-          </button>
+          </Button>
         </div>
       )}
     </div>

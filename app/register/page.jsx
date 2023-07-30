@@ -1,4 +1,5 @@
 "use client"
+import Button from '@/components/button/Button';
 import { createUser } from '@/utilities/createUser';
 import GetUser from '@/utilities/getUsers';
 import { useFormik } from 'formik';
@@ -196,16 +197,16 @@ const Register = () => {
             {/* Image upload field end */}
 
             <div className="flex flex-col">
-              <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" type='submit'>
+              <Button type='submit'>
                 Create Account
-              </button>
+              </Button>
             </div>
           </form>
         </div>
 
         <div className="flex items-center justify-center py-4 text-center">
           <span className="text-sm text-gray-600">Already have an account? </span>
-          <Link href="/login" className="mx-2 text-sm font-bold text-blue-500 hover:underline">Login</Link>
+          <Link href="/login" className="mx-2 text-sm font-bold text-primary hover:underline">Login</Link>
         </div>
       </div>
     </div>

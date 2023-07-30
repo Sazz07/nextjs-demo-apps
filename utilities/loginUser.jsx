@@ -14,6 +14,7 @@ const loginUser = (credentials) => {
             const userDataToStore = {
                 ...credentials,
                 name: loginUser.name,
+                image: loginUser.image
             };
 
             localStorage.setItem("currentUser", JSON.stringify(userDataToStore));

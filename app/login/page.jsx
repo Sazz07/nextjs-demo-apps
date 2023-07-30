@@ -1,4 +1,5 @@
 'use client'
+import Button from '@/components/button/Button';
 import GetUser from '@/utilities/getUsers';
 import loginUser from '@/utilities/loginUser';
 import { useFormik } from 'formik';
@@ -102,9 +103,7 @@ const Login = () => {
                         </div>
 
                         <div className="flex items-center justify-between">
-                            <button className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50" type='submit'>
-                                Sign In
-                            </button>
+                            <Button type="submit">Sign In</Button>
                             <Link href="#" className="text-sm text-gray-600 hover:text-gray-700">Forget Password?</Link>
                         </div>
                     </form>
@@ -112,7 +111,7 @@ const Login = () => {
 
                 <div className="flex items-center justify-center py-4 text-center">
                     <span className="text-sm text-gray-600">Don&apos;t have an account? </span>
-                    <Link href="/register" className="mx-2 text-sm font-bold text-blue-500 hover:underline">Register</Link>
+                    <Link href="/register" className="mx-2 text-sm font-bold text-primary hover:underline">Register</Link>
                 </div>
             </div>
         </div>
