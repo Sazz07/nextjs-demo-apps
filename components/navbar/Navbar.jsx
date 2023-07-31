@@ -73,8 +73,8 @@ const Navbar = () => {
                         links.map(link =>
                             <li
                                 key={link.url}
-                                className={`${pathName === link.url && 'underline decoration-inherit decoration-4 text-primary'} 
-                                    hover:underline decoration-inherit decoration-4 hover:text-primary`}
+                                className={`${pathName === link.url && 'underline underline-offset-4 decoration-inherit decoration-4 text-primary'} 
+                                    hover:underline hover:underline-offset-4 decoration-inherit decoration-4 hover:text-primary`}
                             >
                                 <Link href={link.url}>{link.title}</Link>
                             </li>)
@@ -121,7 +121,7 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <Link href={"/login"}>
-                            <button className='bg-primary text-white px-2 py-1 rounded font-bold'>Login</button>
+                            <Button>Sign In</Button>
                         </Link>
                     )}
 

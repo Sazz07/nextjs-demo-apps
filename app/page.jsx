@@ -1,6 +1,7 @@
 'use client'
 import Button from "@/components/button/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -26,21 +27,23 @@ export default function Home() {
           <p className="text-2xl">&quot;Love, gaming, programming, math - Explore, play, code, calculate!&quot;</p>
         </div>
         <div className="w-full grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <article className="relative cursor-pointer border-0 group">
-            <div className="overflow-hidden">
-              <Image
-                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
-                src={'/love.jpg'}
-                alt="love"
-                width={500}
-                height={500}>
-              </Image>
-              <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
-                <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">love</span>
-                <p className="text-justify line-clamp-2">Love is a universal language that transcends boundaries and brings people together.</p>
+          <Link href={`/blogs/love`}>
+            <article className="relative cursor-pointer border-0 group">
+              <div className="overflow-hidden">
+                <Image
+                  className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
+                  src={'/love.jpg'}
+                  alt="love"
+                  width={500}
+                  height={500}>
+                </Image>
+                <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
+                  <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">love</span>
+                  <p className="text-justify line-clamp-2">Love is a universal language that transcends boundaries and brings people together.</p>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </Link>
           <article className="relative cursor-pointer border-0 group">
             <div className="overflow-hidden">
               <Image

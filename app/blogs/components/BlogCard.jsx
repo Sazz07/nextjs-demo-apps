@@ -15,10 +15,10 @@ const BlogCard = ({ blog, index }) => {
     const formDate = dtObject.toLocaleString(undefined, options);
 
     return (
-        <Link href={`blogs/${id}?index=${index}`}>
+        <Link href={`blogs/${id}`}>
             <div className='relative'>
                 <div className=''>
-                    <Image src={blogImages[index]} width={500} height={500} alt='blogsPhoto' className='w-full rounded-t-md md:h-52'
+                    <Image src={photo_url} width={500} height={500} alt='blogsPhoto' className='w-full rounded-t-md md:h-52'
                         priority></Image>
                 </div>
                 <div className='absolute top-3 right-3 bg-white bg-opacity-60 rounded-md px-2 py-1 flex items-center'>
@@ -32,7 +32,7 @@ const BlogCard = ({ blog, index }) => {
                     <h3 className='text-gray-500 uppercase'>{category}</h3>
                     <h1 className='text-xl font-semibold line-clamp-1'>{title}</h1>
                     <p className='text-justify line-clamp-4 text-sm'>{content_text}</p>
-                    <Link href={`blogs/${id}?index=${index}`} as={photo_url}>
+                    <Link href={`blogs/${id}?index=${index}`}>
                         <button className='text-sm text-blue-700 pt-5'>Read More...</button>
                     </Link>
                 </div>
