@@ -44,51 +44,58 @@ export default function Home() {
               </div>
             </article>
           </Link>
-          <article className="relative cursor-pointer border-0 group">
-            <div className="overflow-hidden">
-              <Image
-                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
-                src={'/gaming.avif'}
-                alt="love"
-                width={500}
-                height={500}>
-              </Image>
-              <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
-                <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">gaming</span>
-                <p className="text-justify line-clamp-2">Immerse yourself in the thrilling realm of gaming. From action-packed adventures to mind-bending puzzles, delve into the latest trends, gaming strategies, and updates on your favorite titles.</p>
+          <Link href={`/blogs/gaming`}>
+            <article className="relative cursor-pointer border-0 group">
+              <div className="overflow-hidden">
+                <Image
+                  className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
+                  src={'/gaming.avif'}
+                  alt="love"
+                  width={500}
+                  height={500}>
+                </Image>
+                <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
+                  <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">gaming</span>
+                  <p className="text-justify line-clamp-2">Immerse yourself in the thrilling realm of gaming. From action-packed adventures to mind-bending puzzles, delve into the latest trends, gaming strategies, and updates on your favorite titles.</p>
+                </div>
               </div>
-            </div>
-          </article>
-          <article className="relative cursor-pointer border-0 group">
-            <div className="overflow-hidden">
-              <Image
-                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
-                src={'/programming.avif'}
-                alt="love"
-                width={500}
-                height={500}>
-              </Image>
-              <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
-                <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">Programming</span>
-                <p className="text-justify line-clamp-2">Unlock the power of coding and programming as we take you on a journey through the digital landscape. Learn about programming languages, software development, and innovative tech solutions.</p>
+            </article>
+          </Link>
+          <Link href={`/blogs/programming`}>
+            <article className="relative cursor-pointer border-0 group">
+              <div className="overflow-hidden">
+                <Image
+                  className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
+                  src={'/programming.avif'}
+                  alt="love"
+                  width={500}
+                  height={500}>
+                </Image>
+                <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
+                  <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">Programming</span>
+                  <p className="text-justify line-clamp-2">Unlock the power of coding and programming as we take you on a journey through the digital landscape. Learn about programming languages, software development, and innovative tech solutions.</p>
+                </div>
               </div>
-            </div>
-          </article>
-          <article className="relative cursor-pointer border-0 group">
-            <div className="overflow-hidden">
-              <Image
-                className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
-                src={'/math.avif'}
-                alt="love"
-                width={500}
-                height={500}>
-              </Image>
-              <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
-                <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">Math</span>
-                <p className="text-justify line-clamp-2">Unravel the beauty and complexity of mathematics. Discover fascinating math concepts, problem-solving techniques, and real-life applications of this fundamental science that shapes the world around us.</p>
+            </article>
+          </Link>
+
+          <Link href={`/blogs/math`}>
+            <article className="relative cursor-pointer border-0 group">
+              <div className="overflow-hidden">
+                <Image
+                  className="h-96 w-full object-cover object-center transform duration-300 group-hover:scale-110"
+                  src={'/math.avif'}
+                  alt="love"
+                  width={500}
+                  height={500}>
+                </Image>
+                <div className="absolute bottom-0 text-white bg-black bg-opacity-60 px-5 py-3 space-y-2">
+                  <span className="bg-primary text-sm uppercase px-2 py-1 rounded-md">Math</span>
+                  <p className="text-justify line-clamp-2">Unravel the beauty and complexity of mathematics. Discover fascinating math concepts, problem-solving techniques, and real-life applications of this fundamental science that shapes the world around us.</p>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </Link>
         </div>
       </section>
       {/* Blog categories section end */}

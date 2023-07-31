@@ -8,8 +8,8 @@ const RelatedCard = ({ cat, index }) => {
     } = cat;
     console.log(id);
     return (
-        <Link href={`blogs/${id}`}>
-            <div className='flex flex-wrap gap-3 shadow-sm border whitespace-nowrap overflow-hidden'>
+        <Link href={`/blogs/${id}`}>
+            <div className='flex flex-wrap gap-3 shadow-sm border whitespace-nowrap overflow-hidden hover:bg-gray-100'>
                 <div className='w-1/4'>
                     <Image
                         src={photo_url}

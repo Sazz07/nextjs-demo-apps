@@ -1,10 +1,10 @@
 'use client'
-import { useQuery } from '@tanstack/react-query';
 import { usePathname } from 'next/navigation';
 import React from 'react'
-import LoveCard from './components/LoveCard';
+import ProgrammingCard from './components/ProgrammingCard';
+import { useQuery } from '@tanstack/react-query';
 
-const Love = () => {
+const Programming = () => {
     const pathName = usePathname();
     const categoryName = pathName.split('/')[2];
     const { data: blogs, isLoading } = useQuery({
@@ -28,19 +28,18 @@ const Love = () => {
     const { blogs: allBlogs } = blogs;
 
     const categoryBlogs = allBlogs.filter((blog) => blog?.category === categoryName);
-
     return (
         <section className='max-w-screen-xl mx-auto py-24'>
             <h1 className='text-4xl font-bold uppercase'>{categoryName} Blogs</h1>
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-10 py-12'>
-                {categoryBlogs.map((categoryBlog) => <LoveCard
+                {categoryBlogs.map((categoryBlog) => <ProgrammingCard
                     key={categoryBlog.id}
                     categoryBlog={categoryBlog}
                 >
-                </LoveCard>)}
+                </ProgrammingCard>)}
             </div>
         </section>
     )
 }
 
-export default Love;
+export default Programming;
