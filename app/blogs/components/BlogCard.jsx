@@ -28,12 +28,12 @@ const BlogCard = ({ blog, index }) => {
                     </svg>
                     <span>{formDate}</span>
                 </div>
-                <div className='space-y-2 p-3 border-2 border-t-0 border-gray-200 rounded-b-md'>
-                    <h3 className='text-gray-500 uppercase'>{category}</h3>
+                <div className='space-y-2 p-3 border-2 border-t-0 border-gray-300 rounded-b-md'>
+                    <span className='border-2 border-teal-600 font-bold text-sm uppercase p-1 rounded-md text-gray-700'>{category}</span>
                     <h1 className='text-xl font-semibold line-clamp-1'>{title}</h1>
                     <p className='text-justify line-clamp-4 text-sm'>{content_text}</p>
                     <Link href={`/blogs/${id}?index=${index}`}>
-                        <button className='text-sm text-blue-700 pt-5'>Read More...</button>
+                        <button className='text-sm text-blue-700 pt-5 font-semibold'>Read More...</button>
                     </Link>
                 </div>
             </div>

@@ -15,15 +15,7 @@ const links = [
     {
         title: "Blogs",
         url: "/blogs",
-    },
-    {
-        title: "About",
-        url: "/about",
-    },
-    {
-        title: "Dashboard",
-        url: "/dashboard",
-    },
+    }
 ];
 
 const Navbar = () => {
@@ -40,41 +32,42 @@ const Navbar = () => {
     return (
         <nav className='bg-gray-50 w-full py-4 px-20 flex justify-between items-center sticky top-0 z-50 shadow-md'>
             <div className='flex items-center justify-between w-full h-8'>
-                <Link href={'/'}>
-                    <h1>Logo</h1>
+                <Link
+                    href={'/'}
+                    className='flex items-center gap-1'>
+                    <Image src={'/logo.svg'} alt='logo' className='' width={20} height={20}>
+                    </Image>
+                    <h1 className='font-semibold'>Life<span className='text-teal-700'>Blog</span></h1>
                 </Link>
-                {
-                    showMenu ?
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24" strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-6 h-6 md:hidden"
-                            onClick={() => setShowMenu(false)}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                        :
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24"
-                            strokeWidth={1.5} stroke="currentColor"
-                            className="w-6 h-6 md:hidden"
-                            onClick={() => setShowMenu(true)}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
+                {showMenu ?
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24" strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6 md:hidden"
+                        onClick={() => setShowMenu(false)}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    :
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24"
+                        strokeWidth={1.5} stroke="currentColor"
+                        className="w-6 h-6 md:hidden"
+                        onClick={() => setShowMenu(true)}
+                    >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
                 }
-            </div>
-            <div>
-                <ul className='hidden md:flex items-center justify-between gap-5'>
+                <ul className='hidden md:flex items-center gap-5'>
                     {
                         links.map(link =>
                             <li
                                 key={link.url}
-                                className={`${pathName === link.url && 'underline underline-offset-4 decoration-inherit decoration-4 text-primary'} 
-                                    hover:underline hover:underline-offset-4 decoration-inherit decoration-4 hover:text-primary`}
+                                className={`${pathName === link.url && 'underline underline-offset-4 decoration-inherit decoration-4 text-teal-600'} 
+                                    hover:underline hover:underline-offset-4 decoration-inherit decoration-4 hover:text-teal-700`}
                             >
                                 <Link href={link.url}>{link.title}</Link>
                             </li>)
@@ -85,11 +78,13 @@ const Navbar = () => {
                         Logout
                     </li> */}
                     {/* <Button>Log Out</Button> */}
+                </ul>
+                <div className='hidden md:block'>
                     {isLoading ? (
                         <h1>Loading....</h1>
                     ) : currentUser && currentUser?.email ? (
                         <div className='group inline-block relative cursor-pointer'>
-                            <div className='flex items-center gap-1 text-primary font-bold'>
+                            <div className='flex items-center gap-1 text-teal-600 font-bold'>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -103,16 +98,16 @@ const Navbar = () => {
                                 <h2 className='whitespace-nowrap'>{currentUser.name}</h2>
                             </div>
                             <ul className='absolute bg-white hidden group-hover:block py-2 px-1 rounded'>
-                                <li>
+                                {/* <li>
                                     <Link
                                         href={'/edit'}
                                         className='hover:bg-gray-200 py-2 px-4 whitespace-nowrap block hover:text-primary rounded'
                                     >
                                         Edit
                                     </Link>
-                                </li>
+                                </li> */}
                                 <li
-                                    className='hover:bg-gray-200 py-2 px-4 whitespace-nowrap block text-primary font-semibold rounded'
+                                    className='hover:bg-gray-200 py-2 px-4 whitespace-nowrap block text-red-600 font-semibold rounded'
                                     onClick={() => handleLogOut()}
                                 >
                                     Log Out
@@ -124,8 +119,7 @@ const Navbar = () => {
                             <Button>Sign In</Button>
                         </Link>
                     )}
-
-                </ul>
+                </div>
             </div>
             <div>
                 <ul className={`bg-red-400 bg-opacity-90 text-white flex flex-col justify-center items-center gap-5 md:hidden absolute top-16 transition-all duration-500 h-screen ease-in w-full z-100 ${showMenu ? "left-20" : "left-[-678px]"} ${showMenu && "ml-[-5rem]"}`}>

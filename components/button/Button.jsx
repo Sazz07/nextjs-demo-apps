@@ -6,7 +6,7 @@ const Button = ({ children, className, type, onClick, disabled, bgColor, textCol
             onClick={onClick}
             disabled={disabled}
             type={type}
-            className={`whitespace-nowrap ${bgColor ?? 'bg-primary'} py-2 px-3 rounded-md hover:bg-[#D83A56] ${textColor ?? 'text-white'
+            className={`whitespace-nowrap ${bgColor ?? 'bg-teal-600'} py-2 px-3 rounded-md hover:bg-teal-700 ${textColor ?? 'text-white'
                 } ${className}`}
         >
             {children}

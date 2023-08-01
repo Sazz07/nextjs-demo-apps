@@ -5,20 +5,17 @@ import React from 'react'
 const Footer = () => {
     return (
         <footer className="">
-            <div className="container py-6 mx-auto">
+            <div className="px-10 md:px-20 py-6 mx-auto">
                 <div className="lg:flex">
                     <div className="w-full -mx-6 lg:w-2/5">
                         <div className="px-6">
-                            <Link href="/">
-                                <Image
-                                    className="w-auto h-7"
-                                    src="/blog.jpg"
-                                    alt="Blog Logo"
-                                    width={500}
-                                    height={500}
-                                />
+                            <Link
+                                href={'/'}
+                                className='flex items-center gap-1'>
+                                <Image src={'/logo.svg'} alt='logo' className='' width={20} height={20}>
+                                </Image>
+                                <h1 className='font-semibold'>Life<span className='text-teal-700'>Blog</span></h1>
                             </Link>
-
                             <p className="max-w-sm mt-2">Join 31,000+ others and never miss out on new blog posts, tips, tutorials, and more.</p>
 
                             <div className="flex mt-6 -mx-2">
@@ -63,8 +60,8 @@ const Footer = () => {
                             <div>
                                 <h3 className="uppercase font-semibold">Products</h3>
                                 <Link href="#" className="block mt-2 text-sm text-gray-600 hover:underline">Mega Cloud Storage</Link>
-                                <Link href="#" className="block mt-2 text-sm text-gray-600 hover:underline">Aperion UI Kit</Link>
-                                <Link href="#" className="block mt-2 text-sm text-gray-600 hover:underline">Meraki UI Library</Link>
+                                <Link href="#" className="block mt-2 text-sm text-gray-600 hover:underline">LifeBlog</Link>
+                                <Link href="#" className="block mt-2 text-sm text-gray-600 hover:underline">LifeBlog</Link>
                             </div>
 
                             <div>

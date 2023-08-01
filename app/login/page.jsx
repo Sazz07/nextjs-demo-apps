@@ -111,7 +111,7 @@ const Login = () => {
 
                 <div className="flex items-center justify-center py-4 text-center">
                     <span className="text-sm text-gray-600">Don&apos;t have an account? </span>
-                    <Link href="/register" className="mx-2 text-sm font-bold text-primary hover:underline">Register</Link>
+                    <Link href="/register" className="mx-2 text-sm font-bold text-teal-600 hover:underline">Register</Link>
                 </div>
             </div>
         </div>
