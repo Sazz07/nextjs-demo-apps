@@ -14,7 +14,9 @@ export default function Home() {
             <h1 className="text-8xl font-bold">&lt;Blog&gt;</h1>
             <p className="font-medium">Welcome to our amazing blog! Explore the latest articles and stay up-to-date with our exciting content. Our team of passionate writers covers a wide range of topics, including technology, travel, health, lifestyle, and much more. Whether you&apos;re a casual reader or a dedicated enthusiast, there&apos;s something for everyone!</p>
             <div>
-              <Button>Read the Blog</Button>
+              <Link href={'/blogs'}>
+                <Button>Read the Blog</Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import RelatedCard from './components/RelatedCard';
 import Button from '@/components/button/Button';
 import GetUser from '@/utilities/getUsers';
 import { toast } from 'react-hot-toast';
+import Loading from '@/components/loadingSpinner/Loading';
 
 const PostDetails = ({ params: { id } }) => {
   // const [readMore, setReadMore] = useState(false);
@@ -69,7 +70,7 @@ const PostDetails = ({ params: { id } }) => {
   const { data: currentUser } = GetUser();
 
   if (isLoading) {
-    return <h1>Loading......</h1>
+    return <Loading></Loading>
   }
 
   const { blog } = postDetails;
@@ -136,19 +137,24 @@ const PostDetails = ({ params: { id } }) => {
   };
 
   return (
-    <div className='max-w-screen-xl mx-auto px-5 md:px-0 py-5 md:py-14'>
-      <div className='w-full md:flex gap-8'>
+    <div className='max-w-7xl mx-auto px-5 md:px-0 py-5 md:py-14'>
+      <div className='w-full grid md:grid-cols-12 gap-10'>
         {/* Blog details start*/}
-        <div className='w-full md:w-3/5 overflow-hidden'>
+        <div className='md:col-span-8'>
           <div className='w-full'>
             <Image src={photo_url} alt='blog_photo' width={500} height={500} className='w-full h-96 object-cover rounded-lg object-center' priority></Image>
-            <div className='w-full absolute top-0 p-3  flex justify-between items-center'>
-              <h1 className='bg-white bg-opacity-70 px-4 py-1 rounded-md uppercase'>{category}</h1>
-              <p className='bg-white bg-opacity-70 px-4 py-1 rounded-md'>{formDate}</p>
-            </div>
           </div>
           <div className='space-y-2 pt-2'>
-            <h2 className='text-gray-500'>{title}</h2>
+            <span className='border-2 border-teal-700 rounded px-2 py-1 uppercase text-gray-800 font-bold'>{category}</span>
+            <div className='flex items-center justify-between text-gray-500'>
+              <h2 className=''>{title}</h2>
+              <div className='flex gap-x-1 items-center'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className='text-sm'>{formDate}</p>
+              </div>
+            </div>
             <h1 className='text-4xl md:text-5xl font-bold'>{description}</h1>
             {/* {readMore ?
               (<p className='text-justify text-gray-600 text-sm'>{content_text}
@@ -262,7 +268,7 @@ const PostDetails = ({ params: { id } }) => {
                           className='border-2 border-gray-400 rounded p-1 flex-grow'
                         />
                         <button
-                          className='bg-green-600 text-white px-2 py-[5px] rounded-md flex items-center text-sm gap-1 hover:bg-green-800 disabled:opacity-50 disabled:cursor-not-allowed'
+                          className='text-green-600 px-2 py-[5px] text-sm hover:bg-gray-200 rounded font-medium disabled:opacity-50 disabled:cursor-not-allowed'
                           onClick={() => {
                             handleEditComment(comment.id, editedComment.text);
                             setEditedComment({ id: null, text: '' });
@@ -273,7 +279,7 @@ const PostDetails = ({ params: { id } }) => {
                           Save
                         </button>
                         <button
-                          className='bg-red-600 text-white px-2 py-[5px] rounded-md flex items-center text-sm gap-1 hover:bg-red-800'
+                          className='text-red-600 px-2 py-[5px] text-sm hover:bg-gray-200 rounded font-medium'
                           onClick={handleCancelEdit}
                         >
                           Cancel
@@ -292,7 +298,7 @@ const PostDetails = ({ params: { id } }) => {
 
         </div>
         {/* Blog details end*/}
-        <div className='w-full md:w-2/5 md:sticky md:top-20 h-full'>
+        <div className='md:col-span-4 md:sticky md:top-20 h-full'>
           <div>
             <h1 className='text-2xl'>Related Blogs</h1>
             <hr className='border-1 border-black' />

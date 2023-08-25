@@ -131,7 +131,7 @@ const Register = () => {
               }
             </div>
 
-            <div className="w-full">
+            <div className="w-full relative">
               <label htmlFor="password">
                 <p className='-mb-2 text-sm text-gray-800'>Password:</p>
                 <input
@@ -144,6 +144,7 @@ const Register = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+
               </label>
               {
                 errors.password && touched.password ?
@@ -206,7 +207,7 @@ const Register = () => {
 
         <div className="flex items-center justify-center py-4 text-center">
           <span className="text-sm text-gray-600">Already have an account? </span>
-          <Link href="/login" className="mx-2 text-sm font-bold text-primary hover:underline">Login</Link>
+          <Link href="/login" className="mx-2 text-sm font-bold text-teal-700 hover:underline">Sign In</Link>
         </div>
       </div>
     </div>

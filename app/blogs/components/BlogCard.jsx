@@ -3,11 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { blogImages } from './BlogImages';
+import { useSearchParams } from 'next/navigation';
 
 
 
 const BlogCard = ({ blog, index }) => {
     const { id, category, content_text, created_at, description, photo_url, title } = blog;
+    const searchParams = useSearchParams();
 
     // Formatting Date/Time
     const dtObject = new Date(created_at);

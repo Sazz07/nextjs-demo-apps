@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import BlogCard from './components/BlogCard';
+import Loading from '@/components/loadingSpinner/Loading';
 
 const Blogs = () => {
   // const [limit, setLimit] = useState(8);
@@ -31,7 +32,7 @@ const Blogs = () => {
 
 
   if (isLoading) {
-    return <h1>Loading....</h1>
+    return <Loading></Loading>
   }
 
   const { blogs } = blogsDetails;
@@ -45,7 +46,7 @@ const Blogs = () => {
 
 
   return (
-    <div className='max-w-screen-xl mx-auto py-24 px-10 md:px-0'>
+    <div className='max-w-7xl mx-auto py-24 px-10 md:px-0'>
       <h1 className='text-4xl font-bold'>Blogs</h1>
       {/* Filter button Start*/}
       <div className='hidden md:flex py-6 gap-10 justify-center'>
@@ -68,7 +69,6 @@ const Blogs = () => {
           <option value='math'>Math</option>
           <option value='gaming'>Gaming</option>
           <option value='programming'>Programming</option>
-          {/* Add more options for other categories as needed */}
         </select>
       </div>
       {/* Dropdown end */}
